@@ -43,3 +43,54 @@ of view controllers, particularly the Apple-provided ones, work with other view 
 to make all sorts of magic happen 🎉
 
 ## Navigation Controllers
+
+Navigation controllers keep track of which view controllers have been visited, like a back button
+in a browser.
+
+Adding one is similar to adding a tab bar controller. Just search for "Navigation Controller" in
+the Object Library and drag it onto the storyboard. Remember to set "Is Initial View Controller".
+
+As before, Xcode creates a default view controller along with the navigation controller.
+We'll want to change the view controller to start out at our view controller instead of this one.
+To do that, go to the connections for the navigation controller and delete the "root view controller" triggered segue. Once you've done that, add a new "root view controller" connection
+to the view controller we already created.
+
+![Setting the root view controller](navigation-controller-root-view-controller.png)
+
+We can also customize the title that will be displayed for each view controller using its
+navigation item. If you expand the view controller scene in the left sidebar, there will be an
+entry for the navigation item, a white square with a blue caret.
+
+![Finding the navigation item](find-navigation-item.png)
+
+With this selected, go to the Attributes inspector and set the Title property.
+
+![Setting the title](navigation-item-title.png)
+
+Now, when you run the app there will be a title bar at the top saying "Hello, World!" 👋
+
+A navigation controller isn't very useful with only one page to look at, but we can fix that!
+
+In your view controller code, find one of the button handlers and add the following code:
+
+```swift
+let newVC = storyboard?.instantiateViewController(withIdentifier: "RootViewController")
+navigationController?.pushViewController(newVC!, animated: true)
+```
+
+All view controllers have `navigationController` and `storyboard` properties that let them access
+the containing navigation controller and storyboard. We use the navigation controller's
+`pushViewController` method, which presents a view controller and adds it to the history stack.
+The `animated` flag determines whether to show a transition or just change the controller.
+
+The `instantiateViewController` method on storyboards creates a new instance of the view controller
+with the given name. For this to work, we need to give the view controller Xcode added for us
+an identifier so it can be looked up later. This is done in the storyboard by setting the
+"Storyboard ID" in the Identity inspector.
+
+![Setting the Storyboard ID](storyboard-id.png)
+
+When you run the app, try going back and forth between the two views using the code
+you added and the "Back" button the navigation controller provides. Adding in a navigation
+controller gives us a ton of functionality without too much work - we can push and pop
+view controllers as much as we want without having to worry!
