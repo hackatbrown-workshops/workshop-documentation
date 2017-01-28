@@ -92,6 +92,7 @@ and using it.
 
 * [NSURLSession Tutorial: Getting Started](https://www.raywenderlich.com/110458/nsurlsession-tutorial-getting-started)
 * [Brown APIs](https://api.students.brown.edu)
+* [Alamofire](https://github.com/Alamofire/Alamofire)
 
 [what-is-an-api]: https://medium.freecodecamp.com/what-is-an-api-in-english-please-b880a3214a82#.7stsdgmga
 [laundry-api]: https://api.students.brown.edu/docs/laundry
